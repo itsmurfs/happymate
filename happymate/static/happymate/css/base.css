@@ -1,0 +1,32 @@
+body{
+    background-color: azure;
+}
+h1 {
+    font: Arial;
+}
+
+#mainContainer{
+    margin-top:2%;
+}
+
+#leftContent{
+    float: left;
+    width: 20%;
+}
+
+#appContent{
+    float: left;
+}
+
+
+#rightContent{
+    float: left;
+    width: 25%;
+}
+
+
+
+.leftBox {
+    margin: auto;
+    width: 70%;
+}

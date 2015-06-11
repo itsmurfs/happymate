@@ -1,0 +1,25 @@
+{% extends "happyfridge/base/base.html" %}
+{% load staticfiles %}
+{% block script %}
+    {{ block.super }}
+        <script type="text/javascript">
+        $(document).ready(function () {
+            registerAll();
+        });
+    </script>
+{% endblock %}
+{% block title %}"happyfridge"{% endblock %}
+
+{% block appContent %}
+    <div class="panel panel-primary" style="/*float: right; margin-left: 0px*/">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ user }} @ HappyMate (byITsmurfs)</h3>
+            </div>
+            <div class="panel-body">
+                <div id="appNavigator" >
+        {% include "happyfridge/ajax/items_list.html" %}
+</div>
+            </div>
+        </div>
+
+{% endblock %}

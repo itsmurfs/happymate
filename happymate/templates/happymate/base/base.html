@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    {# remember to load staticfiles in each block subclasses #}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <script src="{% static "jquery/jquery-2.1.1.js" %}"></script>
+    <script src="{% static "jquery/jquery-2.1.1.min.js" %}"></script>
+    <script src="{% static "jquery/jquery-2.1.1.min.map" %}"></script>
+    <script src="{% static "jquery-ui/jquery-ui.js" %}"></script>
+    <script src="{% static "jquery-ui/jquery-ui.min.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "jquery-form/jquery.form.js" %}"></script>
+    <script src="{% static "common/js/ajax-controller.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "datatable/css/jquery.dataTables.css" %}"/>
+    <script type="text/javascript" charset="utf8" src="{% static "datatable/js/jquery.dataTables.js" %}"></script>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}"/>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-theme.css" %}"/>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static "happymate/css/base.css" %}"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            registerAll();
+        });
+    </script>
+    {% block script %}
+    {% endblock %}
+</head>
+<body>
+<div id="mainContainer">
+    <div id="leftContent">
+        {% block leftContent %}
+            <div class="panel panel-primary leftBox">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Hi {{ user }} !
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <a href="{% url "edit_profile" %}" title="edit you profile">Edit profile</a><br>
+                    <a href="{% url "logout" %}" title="logout {{ user }}">logout {{ user }}</a>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+    <div id="appContent">
+        {% block appContent %}{% endblock %}
+
+    </div>
+    <div id="rightContent">
+        {% block rightContent %}{% endblock %}
+    </div>
+</div>
+    {% block footer %}{% endblock %}
+
+</body>
+</html>

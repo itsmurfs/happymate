@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>:) HappyMate Login :)</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js"  %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "login/css/signin.css" %}">
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#id_username , #id_password").addClass("form-control")
+        })
+    </script>
+</head>
+<body>
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<div class="container">
+
+<form class="form-signin" method="post" action="{% url 'login' %}">
+    <h2 class="form-signin-heading">Please sign in</h2>
+{% csrf_token %}
+{{ form.username.label_tag }}
+{{ form.username }}
+
+{{ form.password.label_tag }}
+{{ form.password }}
+<input class="btn btn-lg btn-primary btn-block" type="submit" value="login" />
+<input type="hidden" name="next" value="{{ next }}" />
+    <p>
+        <a href="{% url "register" %}">Sign in with a new user !</a>
+    </p>
+</form>
+</div>
+</body>
+</html>

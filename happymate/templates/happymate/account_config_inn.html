@@ -1,0 +1,13 @@
+<html>
+<body>
+<form name="config_inn_form" action="{% url 'config_inn' %}" method="post">
+    {% csrf_token %}
+    {{ inn_form }}
+
+    <input type="checkbox" name="create_inn" checked="checked"/>
+
+    <input type="submit" value="Go inn!"/>
+
+</form>
+</body>
+</html>

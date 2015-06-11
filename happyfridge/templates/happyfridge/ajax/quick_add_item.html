@@ -1,0 +1,21 @@
+<div class="ajax" id="quickAddItem" {#  data-ajax=#} >
+    <script type="text/javascript">
+        function showPanelAddItem(){
+            $('#panelAddItem').slideToggle('slow')
+        }
+    </script>
+    <div class="panel panel-primary rightBox">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="#" onclick="showPanelAddItem()">Add new Item</a></h3>
+        </div>
+        <div id="panelAddItem" class="panel-body">
+            <form name="additem" class="addItemForm" method="post" action={% url "happyfridge_ajax:quick_add_item" %}>
+                {% csrf_token %}
+                <table id="itemformtable">
+                    {{ form_add_item.as_table }}
+                </table>
+                <input type="button" onclick="ajaxSubmitForm(this)" value="Save">
+            </form>
+        </div>
+    </div>
+</div>

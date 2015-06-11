@@ -1,0 +1,61 @@
+<div class="ajax" id="happyfridgeContent" data-ajax="{% url "happyfridge_ajax:items_list" %}">
+    <h1 style="text-align: center">be your fridge</h1>
+    {% load staticfiles %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(':checkbox').each(function () {
+                $(this).click(function () {
+                    ajaxSubmitForm(this, {callback_func: function () {
+                    }});
+
+                });
+            });
+
+            $('#items_list_table').DataTable();
+        });
+
+        {% include 'common/debug/debug_js_ajax.html' with page='1.js' %}
+    </script>
+
+
+    <div class="items_list">
+
+
+        <table id="items_list_table" class="display">
+            <thead>
+            <tr>
+                <th>Status</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Requested by</th>
+                <th>Checked by</th>
+                <th>PROC</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for form in items_form %}
+                <tr>
+                    <td>{{ form.instance.status }}</td>
+                    <td>{{ form.instance.name }}</td>
+                    <td>{{ form.instance.quantity }}</td>
+                    <td>{{ form.instance.req_who }}</td>
+                    <td>{{ form.instance.check_who }}</td>
+                    <td>
+                        <form class="itemList" action="{% url "happyfridge_ajax:items_list" %}" method="POST">
+                            {% csrf_token %}
+                            {% for field in form %}
+                                {{ field }}
+                            {% endfor %}
+                        </form>
+                    </td>
+                </tr>
+
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {#                <span class="itemLabel {{ form.instance.status }}">{{ form.instance.name }} {{ form.instance.quantity }} (req: {{ form.instance.req_who }}) (proc: {{ form.instance.check_who }})</span>#}
+
+    </div>
+</div>

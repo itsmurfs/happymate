@@ -1,0 +1,17 @@
+
+
+{% extends "happymate/base/base.html" %}
+
+{% load staticfiles %}
+
+{% block script %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "happyfridge/css/fridge_base.css" %}">
+{% endblock %}
+
+{% block rightContent %}
+
+{% include "happyfridge/ajax/check_item.html" %}
+{% include "happyfridge/ajax/quick_add_item.html" %}
+{% endblock %}
+

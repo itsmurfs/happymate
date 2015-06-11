@@ -1,0 +1,14 @@
+{% extends 'happyfridge/base/base.html' %}
+{% block appContent %}
+<form action="{% url "happyfridge:new_shopping_run" %}" method="POST">
+{% csrf_token %}
+{% if item_pending %}
+    <h1>Reload old item still processing or not cheked ..yo BITCH?</h1>
+    <input type="submit" value="yes" name="choice">
+    <input type="submit" value="no" name="choice">
+{% else %}
+<h1>Let's start a new shopping run </h1>
+        <input type="submit" value="yobitch" name="choice">
+{% endif %}
+</form>
+{% endblock %}

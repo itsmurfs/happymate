@@ -1,0 +1,38 @@
+<div class="ajax" id="fridgeRightBox" data-ajax="{% url "happyfridge_ajax:check_item" %}">
+<script type="text/javascript">
+
+        function showPanelProcItem(){
+            $('#panelProcItem').slideToggle('slow')
+        }
+
+    function submitPrep(element){
+        var action = element.name;
+        var input_param = {"action":action };
+        ajaxSubmitForm(element, {input_param:input_param} );
+    }
+</script>
+<div class="panel panel-primary rightBox">
+    <div class="panel-heading">
+        <h3 class="panel-title"><a href="#" onclick="showPanelProcItem()">Spotted items</a> </h3>
+    </div>
+    <div id="panelProcItem" class="panel-body">
+        <p>{{ shopping_run |title }}</p>
+        <p>{% now "r" %}</p>
+        <p>this run will expire in {{ shopping_run.expire_time }} days !</p>
+        <ul>
+            <label>My Home List</label>
+            {% for form in formscheck %}
+                <form class="checklistform" action="{% url "happyfridge_ajax:check_item" %}" method="post">
+                {% csrf_token %}
+
+                    {{ form.as_ul  }}
+
+                    <li>{{ form.instance.name }}<input class="btn" onclick="submitPrep(this)" type="button" name="CHECK" value="check item">
+                    <input class="btn" onclick="submitPrep(this)" type="button" name="DELETE" value="delete item"></li>
+
+                </form>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+</div>

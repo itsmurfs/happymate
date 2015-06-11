@@ -1,0 +1,17 @@
+{% extends "happymate/base/base.html" %}
+{% load staticfiles %}
+{% block appContent %}
+    <h2> Welcome to HappyMate!!</h2>
+
+    <div class="panel panel-primary">
+{% comment %}                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Hi {{ user }} !
+                    </h3>
+                </div>{% endcomment %}
+                <div class="panel-body">
+                    <a href={% url "happyfridge:home" %}>Go to HappyFridge App (demo)!!</a>
+                </div>
+            </div>
+
+{% endblock %}
